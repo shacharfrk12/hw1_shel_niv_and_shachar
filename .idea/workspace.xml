@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec8f619d-c96a-4d74-b504-327a171afb45" name="Changes" comment="">
+    <list default="true" id="ec8f619d-c96a-4d74-b504-327a171afb45" name="Changes" comment="uploaded files from moodle">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Board.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -12,6 +15,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2PqFOGEcebFQSY1KZVFcLxtrnQf" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -40,11 +46,23 @@
       <option name="presentableId" value="Default" />
       <updated>1684176720889</updated>
       <workItem from="1684176722048" duration="176000" />
-      <workItem from="1684176912412" duration="562000" />
+      <workItem from="1684176912412" duration="3162000" />
     </task>
+    <task id="LOCAL-00001" summary="uploaded files from moodle">
+      <created>1684177510281</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1684177510281</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="uploaded files from moodle" />
+    <option name="LAST_COMMIT_MESSAGE" value="uploaded files from moodle" />
   </component>
 </project>
