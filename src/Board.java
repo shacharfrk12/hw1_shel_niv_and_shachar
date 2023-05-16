@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.function.BiPredicate;
 
 public class Board {
     private Tile[][] tiles;
@@ -29,6 +30,34 @@ public class Board {
         }
         this.n = n;
 
+    }
+    //copy constractor
+    public Board(Board board){
+        this.m = board.m;
+        this.n = board.n;
+        this.tiles = new Tile[this.m][this.n];
+        for(int i = 0;i < this.m;i++){
+            for(int j = 0;j < this.n;j++){
+                this.tiles[i][j] = board.tiles[i][j];
+            }
+        }
+    }
+    public int getM(){
+        return this.m;
+    }
+    public int getN(){
+        return this.n;
+    }
+
+    public boolean isGoal(){
+        for (int i = 0; i < this.m; i++) {
+            for (int j = 0; j < this.n; j++) {
+                if(this.tiles[i][j].getValue() != i*this.n+j){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     @Override
