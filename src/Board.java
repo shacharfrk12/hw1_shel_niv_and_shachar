@@ -5,9 +5,11 @@ public class Board {
     private Tile[][] tiles;
     private final int m;
     private final int n;
+    private int[] place;
 
     public Board(String boardStr){
         int n=0;
+        this.place = new int[2];
         String[] boardRows = boardStr.split("|");
         this.m = boardRows.length;
         this.tiles = new Tile[this.m][];
@@ -21,6 +23,8 @@ public class Board {
                 //the cell marked _ in the string will be empty - with no tile in it
                 if(tilesStrings[i]=="_"){
                     this.tiles[i][j] = null;
+                    this.place[0] = i;
+                    this.place[1] = j;
                 }
                 //otherwise, we create a tile with the fitting value
                 else{
@@ -35,6 +39,7 @@ public class Board {
     public Board(Board board){
         this.m = board.m;
         this.n = board.n;
+        this.place = board.place;
         this.tiles = new Tile[this.m][this.n];
         for(int i = 0;i < this.m;i++){
             for(int j = 0;j < this.n;j++){
@@ -58,6 +63,17 @@ public class Board {
             }
         }
         return true;
+    }
+
+    public void move(Direction dir){
+        switch(dir){
+            case UP:
+                tiles[place[0]][place[1]] = tiles[place[0] + 1][place[1]];
+                tiles[place[0] + 1][place[1]] = null;
+            case DOWN:
+            case LEFT:
+            case RIGHT:
+        }
     }
 
     @Override
