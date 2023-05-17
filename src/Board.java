@@ -5,9 +5,11 @@ public class Board {
     private Tile[][] tiles;
     private final int m;
     private final int n;
+    private int[] place;
 
     public Board(String boardStr){
         int n=0;
+        this.place = new int[2];
         String[] boardRows = boardStr.split("|");
         this.m = boardRows.length;
         this.tiles = new Tile[this.m][];
@@ -21,6 +23,8 @@ public class Board {
                 //the cell marked _ in the string will be empty - with no tile in it
                 if(tilesStrings[i]=="_"){
                     this.tiles[i][j] = null;
+                    this.place[0] = i;
+                    this.place[1] = j;
                 }
                 //otherwise, we create a tile with the fitting value
                 else{
@@ -31,7 +35,7 @@ public class Board {
         this.n = n;
 
     }
-    //copy constractor
+    //copy constructor
     public Board(Board board){
         this.m = board.m;
         this.n = board.n;
@@ -49,6 +53,13 @@ public class Board {
         return this.n;
     }
 
+    public int[] getPlace(){
+        int[] copyPlace = new int[2];
+        copyPlace[0] = place[0];
+        copyPlace[1] = place[1];
+        return copyPlace;
+    }
+
     public boolean isGoal(){
         for (int i = 0; i < this.m; i++) {
             for (int j = 0; j < this.n; j++) {
@@ -60,7 +71,7 @@ public class Board {
         return true;
     }
 
-    public void move(Direction dir, int[] place){
+    public void move(Direction dir){
         switch(dir){
             case UP:
                 tiles[place[0]][place[1]] = tiles[place[0] + 1][place[1]];
@@ -93,22 +104,18 @@ public class Board {
         Board board = (Board) other;
         return Arrays.deepEquals(tiles, board.tiles);
     }
-    public int getValue(int[] place, Direction dir){
+    public int getValue(Direction dir){
         switch(dir){
             case UP:
-                tiles[place[0] + 1][place[1]].getValue();
-                break;
+                return tiles[place[0] + 1][place[1]].getValue();
             case DOWN:
-                tiles[place[0] - 1][place[1]].getValue();
-                break;
+                return tiles[place[0] - 1][place[1]].getValue();
             case LEFT:
-                tiles[place[0]][place[1] + 1].getValue();
-                break;
+                return tiles[place[0]][place[1] + 1].getValue();
             case RIGHT:
-                tiles[place[0]][place[1] - 1].getValue();
-                break;
-
+                return tiles[place[0]][place[1] - 1].getValue();
         }
+        return -1;
     }
 
     @Override
