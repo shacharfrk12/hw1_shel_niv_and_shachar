@@ -5,11 +5,9 @@ public class Board {
     private Tile[][] tiles;
     private final int m;
     private final int n;
-    private int[] place;
 
     public Board(String boardStr){
         int n=0;
-        this.place = new int[2];
         String[] boardRows = boardStr.split("|");
         this.m = boardRows.length;
         this.tiles = new Tile[this.m][];
@@ -23,8 +21,6 @@ public class Board {
                 //the cell marked _ in the string will be empty - with no tile in it
                 if(tilesStrings[i]=="_"){
                     this.tiles[i][j] = null;
-                    this.place[0] = i;
-                    this.place[1] = j;
                 }
                 //otherwise, we create a tile with the fitting value
                 else{
@@ -39,7 +35,6 @@ public class Board {
     public Board(Board board){
         this.m = board.m;
         this.n = board.n;
-        this.place = board.place;
         this.tiles = new Tile[this.m][this.n];
         for(int i = 0;i < this.m;i++){
             for(int j = 0;j < this.n;j++){
@@ -65,14 +60,28 @@ public class Board {
         return true;
     }
 
-    public void move(Direction dir){
+    public void move(Direction dir, int[] place){
         switch(dir){
             case UP:
                 tiles[place[0]][place[1]] = tiles[place[0] + 1][place[1]];
                 tiles[place[0] + 1][place[1]] = null;
+                place[0] = place[0] + 1;
+                break;
             case DOWN:
+                tiles[place[0]][place[1]] = tiles[place[0] - 1][place[1]];
+                tiles[place[0] - 1][place[1]] = null;
+                place[0] = place[0] - 1;
+                break;
             case LEFT:
+                tiles[place[0]][place[1]] = tiles[place[0]][place[1] + 1];
+                tiles[place[0]][place[1] + 1] = null;
+                place[1] = place[1] + 1;
+                break;
             case RIGHT:
+                tiles[place[0]][place[1]] = tiles[place[0]][place[1] - 1];
+                tiles[place[0]][place[1] - 1] = null;
+                place[1] = place[1] - 1;
+                break;
         }
     }
 
@@ -83,6 +92,23 @@ public class Board {
         }
         Board board = (Board) other;
         return Arrays.deepEquals(tiles, board.tiles);
+    }
+    public int getValue(int[] place, Direction dir){
+        switch(dir){
+            case UP:
+                tiles[place[0] + 1][place[1]].getValue();
+                break;
+            case DOWN:
+                tiles[place[0] - 1][place[1]].getValue();
+                break;
+            case LEFT:
+                tiles[place[0]][place[1] + 1].getValue();
+                break;
+            case RIGHT:
+                tiles[place[0]][place[1] - 1].getValue();
+                break;
+
+        }
     }
 
     @Override
