@@ -1,12 +1,15 @@
 import java.util.Arrays;
+import java.util.function.BiPredicate;
 
 public class Board {
     private Tile[][] tiles;
     private final int m;
     private final int n;
+    private int[] place;
 
     public Board(String boardStr){
         int n=0;
+        this.place = new int[2];
         String[] boardRows = boardStr.split("|");
         this.m = boardRows.length;
         this.tiles = new Tile[this.m][];
@@ -20,6 +23,8 @@ public class Board {
                 //the cell marked _ in the string will be empty - with no tile in it
                 if(tilesStrings[i]=="_"){
                     this.tiles[i][j] = null;
+                    this.place[0] = i;
+                    this.place[1] = j;
                 }
                 //otherwise, we create a tile with the fitting value
                 else{
@@ -29,6 +34,46 @@ public class Board {
         }
         this.n = n;
 
+    }
+    //copy constractor
+    public Board(Board board){
+        this.m = board.m;
+        this.n = board.n;
+        this.place = board.place;
+        this.tiles = new Tile[this.m][this.n];
+        for(int i = 0;i < this.m;i++){
+            for(int j = 0;j < this.n;j++){
+                this.tiles[i][j] = board.tiles[i][j];
+            }
+        }
+    }
+    public int getM(){
+        return this.m;
+    }
+    public int getN(){
+        return this.n;
+    }
+
+    public boolean isGoal(){
+        for (int i = 0; i < this.m; i++) {
+            for (int j = 0; j < this.n; j++) {
+                if(this.tiles[i][j].getValue() != i*this.n+j){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public void move(Direction dir){
+        switch(dir){
+            case UP:
+                tiles[place[0]][place[1]] = tiles[place[0] + 1][place[1]];
+                tiles[place[0] + 1][place[1]] = null;
+            case DOWN:
+            case LEFT:
+            case RIGHT:
+        }
     }
 
     @Override
