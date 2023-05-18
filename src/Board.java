@@ -125,8 +125,13 @@ public class Board {
         return -1;
     }
 
-    public Tile getValue(int x , int y){
-        return tiles[x][y];
+    //  the function returns the value of the tile in x, y
+    public int getValue(int x , int y){
+        if(tiles[x][y] == null)
+            // null doesn't have a value, so we set it to be the value of
+            // the location of the right position for the null tile
+            return n * m;
+        return tiles[x][y].getValue();
     }
 
     @Override

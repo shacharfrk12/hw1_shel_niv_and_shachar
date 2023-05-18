@@ -48,6 +48,9 @@ public class Search {
                 }
                 expandedNodes++;
                 Node[] children = node.expand();
+                for(int i = 0 ; i < children.length; i++){
+                    //System.out.println(children[i].getAction());
+                }
 
                 for (Node child : children) {  // Iterate over all possible child nodes
                     if (!enqueued.contains(child.getState())) {  // Check for duplication
