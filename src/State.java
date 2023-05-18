@@ -28,19 +28,19 @@ public class State {
         Direction[] dirs = Direction.values();
         int[] place = board.getPlace();
 
-        dirs[0] = place[0] + 1 < this.board.getN() ? dirs[0]: null;
+        dirs[0] = place[0] + 1 < this.board.getM() ? dirs[0]: null;
         dirs[1] = place[0] - 1 >= 0 ? dirs[1]: null;
-        dirs[2] = place[1] - 1 >= 0 ? dirs[0]: null;
-        dirs[3] = place[1] + 1 < this.board.getM() ? dirs[2]: null;
+        dirs[2] = place[1] - 1 >= 0 ? dirs[2]: null;
+        dirs[3] = place[1] + 1 < this.board.getN() ? dirs[3]: null;
 
-        for (int i = 0; i <= 4; i++) {
+        for (int i = 0; i < 4; i++) {
             if (dirs[i] != null)
                 sum++;
         }
 
         Action[] actionsArr = new Action[sum];
 
-        for (int i = 0; i <= sum; i++) {
+        for (int i = 0; i < sum; i++) {
             while(j < 4 && dirs[j]==null){
                 j++;
             }
