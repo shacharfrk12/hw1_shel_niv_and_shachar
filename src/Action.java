@@ -1,6 +1,6 @@
 public class Action {
-    private int tile;
-    private Direction dir1;
+    private final int tile;
+    private final Direction dir1;
     public Action(int value, Direction direction){
          tile = value;
          dir1 = direction;

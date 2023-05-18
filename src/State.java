@@ -25,7 +25,7 @@ public class State {
 
     /**
      * checks if the state of the board is identical to target board - meaning the solution of the game
-     * @return true if it is identical, false otherwize
+     * @return true if it is identical, false otherwise
      */
     public boolean isGoal() {
         int m = board.getM();

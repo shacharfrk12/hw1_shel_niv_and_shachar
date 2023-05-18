@@ -62,9 +62,7 @@ public class Node {
     /**
      * calculates heuristic value - that represents the distance of the current state of the board from
      * the target board
-     *
      * the lower tha returned value - the better the board is
-     *
      *
      * @return heuristic value
      */
@@ -72,7 +70,7 @@ public class Node {
         Board board = state.getBoard();
         int m = board.getM();
         int n = board.getN();
-        int sum = 0, col = 0, row = 0, currValue = 0, distance;
+        int sum = 0, col, row, currValue, distance;
         //calculating sum of manhattan distances
         for(int i = 0; i < m ; i++){
             for(int j = 0 ; j < n; j++){
