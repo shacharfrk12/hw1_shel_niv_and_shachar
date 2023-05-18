@@ -8,9 +8,6 @@ public class Action {
     public Direction getDir1(){
         return dir1;
     }
-    public int getTile(){
-        return tile;
-    }
     @Override
     public String toString(){
         return("Move " +  tile + " " +  dir1);
