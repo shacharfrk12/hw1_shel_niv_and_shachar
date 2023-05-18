@@ -13,7 +13,7 @@ public class Action {
     }
     @Override
     public String toString(){
-        return("Move" + " tile" + " dir1");
+        return("Move " + tile + " " + dir1);
     }
 
 }
