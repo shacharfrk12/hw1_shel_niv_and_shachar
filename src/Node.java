@@ -43,7 +43,7 @@ public class Node {
         int sum = 0, col = 0, row = 0, currValue = 0 ;
         for(int i = 0; i < m ; i++){
             for(int j = 0 ; j < n; j++){
-                 currValue = board.getValue(i, j).getValue();
+                 currValue = board.getValue(i, j);
                  col = (currValue % n);
                  row = (col == 0 ? currValue / n : (currValue / n) + 1);
                 int distance = absoluteValue(i - row) + absoluteValue(j - col);

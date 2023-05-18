@@ -46,6 +46,7 @@ public class State {
             }
             if (j<4)
                 actionsArr[i] = new Action(this.board.getValue(dirs[j]), dirs[j]);
+            j++;
         }
 
         return actionsArr;
