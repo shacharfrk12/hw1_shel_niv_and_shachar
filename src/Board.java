@@ -10,25 +10,25 @@ public class Board {
     public Board(String boardStr){
         int n=0;
         this.place = new int[2];
-        String[] boardRows = boardStr.split("|");
+        String[] boardRows = boardStr.split("\\|");
         this.m = boardRows.length;
         this.tiles = new Tile[this.m][];
         //splitting to rows
         for(int i = 0; i<this.m; i++){
             String[] tilesStrings = boardRows[i].split(" ");
-            n = i==0 ? tilesStrings.length : n;
+            n = (i==0 ? tilesStrings.length : n);
             this.tiles[i] = new Tile[n];
             // splitting to tiles in each row
             for(int j = 0; j < n; j++){
                 //the cell marked _ in the string will be empty - with no tile in it
-                if(tilesStrings[i]=="_"){
+                if(tilesStrings[j].equals("_")){
                     this.tiles[i][j] = null;
                     this.place[0] = i;
                     this.place[1] = j;
                 }
                 //otherwise, we create a tile with the fitting value
                 else{
-                    this.tiles[i][j] = new Tile(Integer.parseInt(tilesStrings[i]));
+                    this.tiles[i][j] = new Tile(Integer.parseInt(tilesStrings[j]));
                 }
             }
         }
@@ -39,6 +39,7 @@ public class Board {
     public Board(Board board){
         this.m = board.m;
         this.n = board.n;
+        this.place = board.getPlace();
         this.tiles = new Tile[this.m][this.n];
         for(int i = 0;i < this.m;i++){
             for(int j = 0;j < this.n;j++){
@@ -61,9 +62,15 @@ public class Board {
     }
 
     public boolean isGoal(){
+        if(this.tiles[this.m-1][this.n-1]!=null){
+            return false;
+        }
         for (int i = 0; i < this.m; i++) {
             for (int j = 0; j < this.n; j++) {
-                if(this.tiles[i][j].getValue() != i*this.n+j){
+                if(i==this.m-1 && j==this.n-1){
+                    return true;
+                }
+                if(this.tiles[i][j].getValue() != i*this.n+j+1){
                     return false;
                 }
             }

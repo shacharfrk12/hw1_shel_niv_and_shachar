@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec8f619d-c96a-4d74-b504-327a171afb45" name="Changes" comment="finished classes" />
+    <list default="true" id="ec8f619d-c96a-4d74-b504-327a171afb45" name="Changes" comment="before changing place to board">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Search.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Search.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/State.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,14 +77,7 @@
       <option name="project" value="LOCAL" />
       <updated>1684344841990</updated>
     </task>
-    <task id="LOCAL-00004" summary="finished classes">
-      <created>1684346177896</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1684346177896</updated>
-    </task>
-    <option name="localTasksCounter" value="5" />
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -98,7 +97,6 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="tile, direction enum and the start of action" />
     <MESSAGE value="before changing place to board" />
-    <MESSAGE value="finished classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="finished classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="before changing place to board" />
   </component>
 </project>

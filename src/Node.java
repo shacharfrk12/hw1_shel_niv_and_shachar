@@ -34,7 +34,7 @@ public class Node {
     }
 
     public int heuristicValue(){
-        return 0;
+
     }
 
 }
