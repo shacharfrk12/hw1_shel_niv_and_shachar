@@ -125,6 +125,10 @@ public class Board {
         return -1;
     }
 
+    public Tile getValue(int x , int y){
+        return tiles[x][y];
+    }
+
     @Override
     public int hashCode() {
         return Arrays.deepHashCode(tiles);

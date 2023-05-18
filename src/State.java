@@ -58,4 +58,8 @@ public class State {
         return new State(nextBoard);
 
     }
+
+    public Board getBoard() {
+        return new Board(board);
+    }
 }
