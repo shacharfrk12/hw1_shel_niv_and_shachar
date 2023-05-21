@@ -19,7 +19,6 @@ public class Search {
      * @return The root node used to search for a solution
      */
     private Node getRoot(String boardString) {
-        // NOTE: This is the only function you need to modify in this class!
         Board firstBoard = new Board(boardString);
         State firstState = new State(firstBoard);
         return new Node(firstState);
@@ -34,6 +33,7 @@ public class Search {
     public List<Action> search(String boardString) {
         try {
             Node root = getRoot(boardString);
+
             Queue<Node> frontier = new PriorityQueue<>(Comparator.comparing(Node::heuristicValue));  // Stores future nodes
             Set<State> enqueued = new HashSet<>();  // Used for duplicate detection
             frontier.add(root);  // Add the root as the first node in the frontier

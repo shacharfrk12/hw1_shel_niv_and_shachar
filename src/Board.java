@@ -13,24 +13,24 @@ public class Board {
      *                 are seperated by | and _ is the empty space
      */
     public Board(String boardStr){
-        int n=0;
         this.place = new int[2];
         //splitting to rows
         String[] boardRows = boardStr.split("\\|");
         this.m = boardRows.length;
-        this.tiles = new Tile[this.m][];
+        //n - number of columns according to first row
+        this.n = boardRows[0].split(" ").length;
         //going over rows
+        this.tiles = new Tile[this.m][this.n];
         for(int i = 0; i<this.m; i++){
             // splitting to tiles in each row
             String[] tilesStrings = boardRows[i].split(" ");
-            //n - number of columns according to first row
-            n = (i==0 ? tilesStrings.length : n);
-            this.tiles[i] = new Tile[n];
             //going over tiles
             for(int j = 0; j < n; j++){
                 //the cell marked _ in the string will be empty - with no tile in it
                 if(tilesStrings[j].equals("_")){
-                    this.tiles[i][j] = null;
+                    // blank doesn't have a value, so we set it to be the value of
+                    // the location of the right position for the blank tile
+                    this.tiles[i][j] = new Tile(n*m);
                     this.place[0] = i;
                     this.place[1] = j;
                 }
@@ -40,7 +40,6 @@ public class Board {
                 }
             }
         }
-        this.n = n;
     }
 
     /***
@@ -57,6 +56,38 @@ public class Board {
                 this.tiles[i][j] = board.tiles[i][j];
             }
         }
+    }
+    //target board constructor
+    public Board(int m, int n ){
+        int counter = 1;
+        tiles = new Tile[m][n];
+        this.m = m;
+        this.n = n;
+        for(int i = 0;  i < m; i++){
+            for(int j = 0; j < n ; j++){
+                tiles[i][j] = new Tile(counter);
+                counter++;
+            }
+        }
+    }
+    public int[] getLocation(int value){
+        int[] location = new int[2];
+        if(value == m*n) {
+            location[0] = m - 1;
+            location[1] = n - 1;
+            return location;
+        }
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j <n; j++) {
+                if(this.tiles[i][j].getValue() == value){
+                    location[0] = i;
+                    location[1] = j;
+                    return location;
+                }
+            }
+
+        }
+        return location;
     }
     public int getM(){
         return this.m;
@@ -84,10 +115,11 @@ public class Board {
                 return tiles[place[0] + 1][place[1]].getValue();
             case DOWN:
                 return tiles[place[0] - 1][place[1]].getValue();
-            case LEFT:
-                return tiles[place[0]][place[1] + 1].getValue();
             case RIGHT:
                 return tiles[place[0]][place[1] - 1].getValue();
+            case LEFT:
+                return tiles[place[0]][place[1] + 1].getValue();
+
         }
         return -1;
     }
@@ -99,10 +131,6 @@ public class Board {
      * @return value of tile
      */
     public int getValue(int x , int y){
-        if(tiles[x][y] == null)
-            // null doesn't have a value, so we set it to be the value of
-            // the location of the right position for the null tile
-            return n * m;
         return tiles[x][y].getValue();
     }
 
@@ -118,26 +146,28 @@ public class Board {
     public void move(Direction dir){
         switch(dir){
             case UP:
-                tiles[place[0]][place[1]] = tiles[place[0] + 1][place[1]];
-                tiles[place[0] + 1][place[1]] = null;
-                place[0] = place[0] + 1;
+                swap(this.place[0], this.place[1], this.place[0] + 1, this.place[1]);
+                this.place[0] = this.place[0] + 1;
                 break;
             case DOWN:
-                tiles[place[0]][place[1]] = tiles[place[0] - 1][place[1]];
-                tiles[place[0] - 1][place[1]] = null;
-                place[0] = place[0] - 1;
-                break;
-            case LEFT:
-                tiles[place[0]][place[1]] = tiles[place[0]][place[1] + 1];
-                tiles[place[0]][place[1] + 1] = null;
-                place[1] = place[1] + 1;
+                swap(this.place[0], this.place[1], this.place[0] - 1, this.place[1]);
+                this.place[0] = this.place[0] - 1;
                 break;
             case RIGHT:
-                tiles[place[0]][place[1]] = tiles[place[0]][place[1] - 1];
-                tiles[place[0]][place[1] - 1] = null;
-                place[1] = place[1] - 1;
+                swap(this.place[0], this.place[1], this.place[0], this.place[1] - 1);
+                this.place[1] = this.place[1] - 1;
+                break;
+            case LEFT:
+                swap(this.place[0], this.place[1], this.place[0], this.place[1] + 1);
+                this.place[1] = this.place[1] + 1;
                 break;
         }
+    }
+
+    private void swap(int firstRow, int firstCol, int secondRow, int secondCol){
+        Tile temp = this.tiles[firstRow][firstCol];
+        this.tiles[firstRow][firstCol] = this.tiles[secondRow][secondCol];
+        this.tiles[secondRow][secondCol] = temp;
     }
 
     @Override

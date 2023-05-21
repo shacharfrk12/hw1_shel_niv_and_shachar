@@ -4,12 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec8f619d-c96a-4d74-b504-327a171afb45" name="Changes" comment="documented all functions we created">
+    <list default="true" id="ec8f619d-c96a-4d74-b504-327a171afb45" name="Changes" comment="fixed some unimportant warnings">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Action.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Node.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Search.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Search.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/State.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tile.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +93,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684424134448</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="fixed some unimportant warnings">
+      <created>1684424314810</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1684424314810</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -113,6 +122,7 @@
     <MESSAGE value="before changing place to board" />
     <MESSAGE value="changed action print" />
     <MESSAGE value="documented all functions we created" />
-    <option name="LAST_COMMIT_MESSAGE" value="documented all functions we created" />
+    <MESSAGE value="fixed some unimportant warnings" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed some unimportant warnings" />
   </component>
 </project>

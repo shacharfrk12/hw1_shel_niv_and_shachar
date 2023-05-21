@@ -5,6 +5,10 @@ public class State {
         this.board = new Board(board);
     }
 
+    public State(State state){
+        this.board = new Board(state.getBoard());
+    }
+
     public Board getBoard() {
         return new Board(board);
     }
@@ -29,12 +33,14 @@ public class State {
      */
     public boolean isGoal() {
         int m = board.getM();
-        int n = board.getM();
+        int n = board.getN();
+        int count = 1;
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                if(board.getValue(i, j) != i*n+j+1){
+                if(board.getValue(i, j) != count){
                     return false;
                 }
+                count++;
             }
         }
         return true;
@@ -51,10 +57,10 @@ public class State {
         Direction[] dirs = Direction.values();
         int[] place = board.getPlace();
         //checking if the moves are valid - if not, we flag them as null
-        dirs[0] = place[0] + 1 < this.board.getM() ? dirs[0]: null;
-        dirs[1] = place[0] - 1 >= 0 ? dirs[1]: null;
-        dirs[2] = place[1] - 1 >= 0 ? dirs[2]: null;
-        dirs[3] = place[1] + 1 < this.board.getN() ? dirs[3]: null;
+        dirs[0] = (place[0] + 1 < this.board.getM()) ? dirs[0]: null;
+        dirs[1] = (place[0] - 1 >= 0) ? dirs[1]: null;
+        dirs[2] = (place[1] - 1 >= 0) ? dirs[2]: null;
+        dirs[3] = (place[1] + 1 < this.board.getN()) ? dirs[3]: null;
 
         //counting how many moves are possible
         for (int i = 0; i < 4; i++) {
@@ -88,7 +94,7 @@ public class State {
     public State result(Action action){
         Board nextBoard = new Board(this.board);
         nextBoard.move(action.getDir1());
-        return new State(nextBoard);
+        return (new State(nextBoard));
 
     }
 }
