@@ -5,7 +5,6 @@ public class Board {
     private Tile[][] tiles; //array of tiles
     private final int m; //row number
     private final int n; //column number
-    private int[] place; //row,col position of empty space
 
     /**
      * constructor that creates board according to input string
@@ -13,7 +12,6 @@ public class Board {
      *                 are seperated by | and _ is the empty space
      */
     public Board(String boardStr){
-        this.place = new int[2];
         //splitting to rows
         String[] boardRows = boardStr.split("\\|");
         this.m = boardRows.length;
@@ -31,8 +29,6 @@ public class Board {
                     // blank doesn't have a value, so we set it to be the value of
                     // the location of the right position for the blank tile
                     this.tiles[i][j] = new Tile(n*m);
-                    this.place[0] = i;
-                    this.place[1] = j;
                 }
                 //otherwise, we create a tile with the fitting value
                 else{
@@ -49,7 +45,6 @@ public class Board {
     public Board(Board board){
         this.m = board.m;
         this.n = board.n;
-        this.place = board.getPlace();
         this.tiles = new Tile[this.m][this.n];
         for(int i = 0;i < this.m;i++){
             for(int j = 0;j < this.n;j++){
@@ -72,11 +67,6 @@ public class Board {
     }
     public int[] getLocation(int value){
         int[] location = new int[2];
-        if(value == m*n) {
-            location[0] = m - 1;
-            location[1] = n - 1;
-            return location;
-        }
         for (int i = 0; i < m; i++) {
             for (int j = 0; j <n; j++) {
                 if(this.tiles[i][j].getValue() == value){
@@ -96,19 +86,14 @@ public class Board {
         return this.n;
     }
 
-    public int[] getPlace(){
-        int[] copyPlace = new int[2];
-        copyPlace[0] = place[0];
-        copyPlace[1] = place[1];
-        return copyPlace;
-    }
-
     /**
      * checks the value of the tile that will move according to the direction
      * @param dir one of 4 directions define in Direction enum -
      *                   UP, DOWN, RIGHT, LEFT
      * @return value of the tile
      */
+
+    /*
     public int getValue(Direction dir){
         switch(dir){
             case UP:
@@ -123,6 +108,7 @@ public class Board {
         }
         return -1;
     }
+    */
 
     /**
      * the function returns the value of the tile in x, y
@@ -143,23 +129,19 @@ public class Board {
      * @param dir one of 4 directions define in Direction enum -
      *            UP, DOWN, RIGHT, LEFT
      */
-    public void move(Direction dir){
+    public void move(int i, int j, Direction dir){
         switch(dir){
             case UP:
-                swap(this.place[0], this.place[1], this.place[0] + 1, this.place[1]);
-                this.place[0] = this.place[0] + 1;
+                swap(i, j, i-1, j);
                 break;
             case DOWN:
-                swap(this.place[0], this.place[1], this.place[0] - 1, this.place[1]);
-                this.place[0] = this.place[0] - 1;
+                swap(i, j, i+1, j);
                 break;
             case RIGHT:
-                swap(this.place[0], this.place[1], this.place[0], this.place[1] - 1);
-                this.place[1] = this.place[1] - 1;
+                swap(i, j, i, j+1);
                 break;
             case LEFT:
-                swap(this.place[0], this.place[1], this.place[0], this.place[1] + 1);
-                this.place[1] = this.place[1] + 1;
+                swap(i, j, i, j-1);
                 break;
         }
     }

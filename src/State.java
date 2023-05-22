@@ -55,7 +55,8 @@ public class State {
         int sum = 0, j = 0;
         //generating an array of directions
         Direction[] dirs = Direction.values();
-        int[] place = board.getPlace();
+        int[] place = board.getLocation(board.getM() * board.getN());
+
         //checking if the moves are valid - if not, we flag them as null
         dirs[0] = (place[0] + 1 < this.board.getM()) ? dirs[0]: null;
         dirs[1] = (place[0] - 1 >= 0) ? dirs[1]: null;
@@ -71,6 +72,27 @@ public class State {
         //defining array of actions
         Action[] actionsArr = new Action[sum];
 
+        //up
+        if(dirs[0] != null){
+            actionsArr[j] = new Action(this.board.getValue(place[0] + 1, place[1]), dirs[0]);
+            j++;
+        }
+        //down
+        if(dirs[1] != null){
+            actionsArr[j] = new Action(this.board.getValue(place[0] - 1, place[1]), dirs[1]);
+            j++;
+        }
+        //right
+        if(dirs[2] != null){
+            actionsArr[j] = new Action(this.board.getValue(place[0], place[1]-1), dirs[2]);
+            j++;
+        }
+        //left
+        if(dirs[3] != null){
+            actionsArr[j] = new Action(this.board.getValue(place[0], place[1]+1), dirs[3]);
+        }
+
+        /*
         //creating actions
         for (int i = 0; i < sum; i++) {
             //finding the next first valid direction for move
@@ -81,7 +103,7 @@ public class State {
             if (j<4)
                 actionsArr[i] = new Action(this.board.getValue(dirs[j]), dirs[j]);
             j++;
-        }
+        }*/
 
         return actionsArr;
     }
@@ -93,7 +115,8 @@ public class State {
      */
     public State result(Action action){
         Board nextBoard = new Board(this.board);
-        nextBoard.move(action.getDir1());
+        int[] location = nextBoard.getLocation(action.getTile());
+        nextBoard.move(location[0], location[1], action.getDir1());
         return (new State(nextBoard));
 
     }

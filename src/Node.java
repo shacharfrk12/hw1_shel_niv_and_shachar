@@ -73,25 +73,25 @@ public class Node {
         int n = board.getN();
         int sum = 0, col, row, currValue, distance;
 
-        boolean[] isConflictedRow = new boolean[n*m+1];
-        boolean[] isConflictedCol = new boolean[n*m+1];
+        //boolean[] isConflictedRow = new boolean[n*m+1];
+        //boolean[] isConflictedCol = new boolean[n*m+1];
 
-        for (int i = 0; i <= n*m; i++) {
-            isConflictedRow[i] = false;
-            isConflictedCol[i] = false;
-        }
-        Board goalBoard = new Board(n ,m);
+        //for (int i = 0; i <= n*m; i++) {
+           // isConflictedRow[i] = false;
+           // isConflictedCol[i] = false;
+        //}
+        Board goalBoard = new Board(m, n);
 
         //calculating sum of manhattan distances
         for(int i = 0; i < m ; i++){
             for(int j = 0 ; j < n; j++){
                 currValue = board.getValue(i, j);
                 //the target board place for this value
-                col = (((currValue % n) == 0) ? (n - 1) : (currValue % n) - 1) ;
-                row = ((col == n - 1) ? ((currValue / n) - 1) : (currValue / n) );
-                //int[] location = goalBoard.getLocation(currValue);
-                //row = location[0];
-                //col = location[1];
+                //col = (((currValue % n) == 0) ? (n - 1) : (currValue % n) - 1) ;
+                //row = ((col == n - 1) ? ((currValue / n) - 1) : (currValue / n) );
+                int[] location = goalBoard.getLocation(currValue);
+                row = location[0];
+                col = location[1];
                 //manhattan distance between this node and target
                 distance = absoluteValue(i - row) + absoluteValue(j - col);
                 sum += distance;
@@ -109,7 +109,7 @@ public class Node {
         //corner tiles
         //sum+= cornerTile(board);
 
-        //sum += linearConflict(board);
+        sum += linearConflict(board);
 
         return sum;
 
@@ -125,10 +125,10 @@ public class Node {
             max = 0;
             for (int j = 0; j < n; j++) {
                 currValue = board.getValue(i, j);
-                location = getSupposedLocation(currValue, n);
-                supposedRow = location[1];
+                //location = getSupposedLocation(currValue, n);
+                //supposedRow = location[1];
 
-                if(currValue<max && supposedRow==i){
+                if(currValue<max && currValue>i*n && currValue<(i+1)*n){
                     count+=2;
                 }
                 if(currValue >= max){
@@ -136,15 +136,14 @@ public class Node {
                 }
             }
         }
-        count = 0;
         for (int i = 0; i < n; i++) {
             max = 0;
             for (int j = 0; j < m; j++) {
                 currValue = board.getValue(j, i);
-                location = getSupposedLocation(currValue, n);
-                supposedCol = location[0];
+                //location = getSupposedLocation(currValue, n);
+                //supposedCol = location[0];
 
-                if(currValue<max && supposedCol==i){
+                if( (currValue<max) && (( (i != n-1) && (currValue % n == i+1) ) || ( (i == n-1) && (currValue % n == 0) ) )){
                     count+=2;
                 }
                 if(currValue >= max){
@@ -193,6 +192,8 @@ public class Node {
                 }
             }
         }
+
+
         return count*2;
     }
 
@@ -235,7 +236,7 @@ public class Node {
         }
         return count * 2;
     }
-    /*public stat ic boolean lastTile(Board board){
+    public static boolean lastTile(Board board){
         int m = board.getM();
         int n = board.getN();
         int currValue = board.getValue(m-1, n-1);
@@ -264,5 +265,5 @@ public class Node {
             count++;
 
         return count*2;
-    }*/
+    }
 }
